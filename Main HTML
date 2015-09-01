@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
+	<link rel="stylesheet" href="main webpage css.css">
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Covered+By+Your+Grace' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+
+  </head>
+
+  <body>
+      
+	<div class="title">
+		<h1>Team KVPD</h1>
+	</div>
+  
+    <div class="nav">
+      <div class="container">
+	  <div class="row">
+        <ul>
+		<div class="col-md-3">
+          <li><a href="#"></a></li>
+        </div>
+		<div class="col-md-3">
+		<li><a href="#"></a></li>
+		</div>
+		<div class="col-md-3">
+          <li><a href="#"></a></li>
+		</div>
+		<div class="col-md-3">
+          <li><a href="#"></a></li>
+		</div>
+        </ul>
+		</div>
+      </div>
+    </div>
+
+    <div class="jumbotron" align="center">
+      <div class="container">
+        <h1>Rate My Course!</h1>
+      
+      </div>
+    </div>
+    
+	<form>
+        <div class= "University">
+		<h3>&nbsp;&nbsp;Name of the University</h3>
+		<select name= "University">
+		<ol>
+		<option name="University" id="University" value= "RU"><li>Rutgers University- New Brunswick</li></option>
+		<option name="University" id="University" value= "RU1"><li>Rutgers University- Newark</li></option>
+		<option name="University" id="University" value= "SIT"><li>Stevens Institute of Technology</li></option>
+		<option name="University" id="University" value= "PU"><li>Princeton University</li></option>
+		<option name="University" id="University" value= "CU"><li>Columbia University</li></option>
+		</select>
+        </div>
+		 
+            
+        <div class= "coursename">    
+		<h3>&nbsp;&nbsp;Name of the course</h3>
+		<select name= "Name">
+	  	<ol>
+		<option name="coursename" id="coursename" value= "CS111"><li>CS 111: Introduction to Computer Science</li></option>
+		<option name="coursename" id="coursename" value= "CS112"><li>CS 112: Data Structures</li></option>
+		<option name="coursename" id="coursename" value= "MA151"><li>MATH 151: Calculus 1 for Math/Phy</li></option>
+		<option name="coursename" id="coursename" value= "MA152"><li>MATH 152: Calculus 2 for Math/Phy</li></option>
+		<option name="coursename" id="coursename" value= "EN101"><li>ENGLISH 101: Expository Writing</li></option>
+		</select>
+        </div> 
+		
+        <div class = "difficulty">
+		<h3>&nbsp;&nbsp;Difficulty</h3>
+		<input name="difficulty" id="difficulty" type="radio"  value="1" >Very Easy
+		<input name="difficulty" id="difficulty" type="radio"  value="2" >Easy
+		<input name="difficulty" id="difficulty" type="radio"  value="3" >Medium
+		<input name="difficulty" id="difficulty" type="radio"  value="4" >Hard
+		<input name="difficulty" id="difficulty" type="radio"  value="5" >Very 
+        </div>
+		
+        <div class = "workload">     
+		<h3>&nbsp;&nbsp;Workload - Hours required out of class(Hours/Week)</h3>
+		<select name= "workload">
+		<ol>
+		<option name="workload" id="workload" value= "1"><li>1</li></option>
+		<option name="workload" id="workload" value= "2"><li>2</li></option>
+		<option name="workload" id="workload" value= "3"><li>3</li></option>
+		<option name="workload" id="workload" value= "4"><li>4</li></option>
+		<option name="workload" id="workload" value= "5"><li>5</li></option>
+		<option name="workload" id="workload" value= "6"><li>6</li></option>
+		<option name="workload" id="workload" value= "7"><li>7</li></option>
+		<option name="workload" id="workload" value= "8"><li>8</li></option>
+		<option name="workload" id="workload" value= "9"><li>9</li></option>
+		<option name="workload" id="workload" value= "10"><li>10</li></option>
+		</select>
+        </div>
+
+		<br>
+		<br>
+        <div class = "textbook">   
+		&nbsp;&nbsp;Textbook:<br>
+		<input name="textbook" id="textbook" type="text" name="Textbook">
+		</div>
+            
+		<br>
+		<br>
+        <div class = "onlinemat">    
+		&nbsp;&nbsp;Online Material:<br>
+		<input name="onlineMaterial" id="onlineMaterial" type="text" name="Online Material">
+        </div>
+            
+        <div class = "curve">
+		<h3>&nbsp;&nbsp;Curve on the grade?</h3>
+		<label>Yes
+   		<input name="curve" type="radio" value="true" />
+		</label> 
+		<label>No
+   		<input name="curve" type="radio" value="false" />
+		</label>
+        </div>    
+
+		<br>
+            <input  type="button" value="Submit" onclick="Save()">
+            <input  type="button" value="Reset" onclick="Reset()">
+
+		
+		
+	</form>
+            
+	<script>
+		/*$(document).ready(function(){
+		$("form").submit(function(e){
+			e.preventDefault();
+			$("form :input").each(function() {
+			console.log($(this).val())
+		})
+        })
+        })
+        */
+        
+        
+      var myfirebaseRef = new Firebase("https://ratemycourse.firebaseio.com");
+        
+        function veryEasy(){difficulty = "Very Easy"};
+        function easy(){difficulty = "Easy"};
+        function medium(){difficulty = "Medium"};
+        function hard(){difficulty = "Hard"};
+        function veryHard(){difficulty = "Very Hard"};
+        
+        
+        function Save(){
+            
+            var University = document.getElementById('University').value;
+            var coursename = document.getElementById('coursename').value;
+            var difficulty = document.getElementById('difficulty').value;
+            var workload = document.getElementById('workload').value;
+            var textbook = document.getElementById('textbook').value;
+            var onlineMaterial = document.getElementById('onlineMaterial').value;
+            var Curve = $('input[name="curve"]:checked').val();
+            
+            /*var university= ('#university').val();
+            var courseName= $('#coursename').val();
+            var difficulty= $('#difficulty').val();
+            var workload= $('#workload"').val();
+            var textbook= $('#textbook').val();
+            var onlineMaterial= $('#onlinemat').val();
+            var curve = $('#curve').val();
+            */
+       
+           
+  myfirebaseRef.child(University).push({
+  NameUniversity: University,
+  Course: coursename,    
+  Difficulty: difficulty,       
+  WorkLoad: workload,
+  TextBook: textbook,                  
+  OnlineMaterial: onlineMaterial,
+  curve: Curve                    
+});
+             
+                 }
+                function Reset(){ 
+                document.getElementById("myForm").reset();
+                alert("Request Sent"); }
+                 	</script>
+					
+	</body>
+</html>    
